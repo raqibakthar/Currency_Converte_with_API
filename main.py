@@ -10,7 +10,7 @@ CONNECTION = DB.cursor()
 API_KEY = os.getenv('API_KEY')
 API_URL = "https://v6.exchangerate-api.com/v6/"
 
-SUPPORTED_CURRENCIES = {
+CURRENCIES_AVAILABLE = {
     'USD': 'US Dollar',
     'EUR': 'Euro',
     'GBP': 'British Pound',
@@ -47,7 +47,7 @@ def setup_database():
 def display_currencies():
     print("Code | Currency Name")
     print("-"*25)
-    for code, name in sorted(SUPPORTED_CURRENCIES.items()):
+    for code, name in sorted(CURRENCIES_AVAILABLE.items()):
         print(f"{code} | {name}")
 
 def get_exchange_rate( from_currency, to_currency):    
@@ -92,7 +92,7 @@ def main():
             from_currency = input("\nEnter from currency code: ").upper()
             to_currency = input("Enter to currency code: ").upper()
             
-            if from_currency not in SUPPORTED_CURRENCIES or to_currency not in SUPPORTED_CURRENCIES:
+            if from_currency not in CURRENCIES_AVAILABLE or to_currency not in CURRENCIES_AVAILABLE:
                 print("Error: Please choose from supported currencies only.")
                 continue
             
